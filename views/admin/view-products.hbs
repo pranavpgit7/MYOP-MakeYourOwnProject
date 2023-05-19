@@ -1,0 +1,37 @@
+<section>
+    <div class="container">
+        <div style="float: right;" class="col mt-4">
+            <a href="/admin/add-products" class="btn btn-success">Add Product</a>
+        </div>
+    <table class="table table-hover mt-5">
+        <thead>
+            <tr>
+            <th scope="col">#</th>
+            <th scope="col">TItle</th>
+            <th scope="col">Category</th>
+            <th scope="col">Description</th>
+            <th scope="col">Price</th>
+            <th scope="col">Image</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each products}}
+            <tr>
+
+            <th scope="row">{{@index}}</th>
+            <td>{{this.title}}</td>
+            <td>{{this.category}}</td>
+            <td>{{this.description}}</td>
+            <td>{{this.price}}</td>
+            <td><img style="height: 50px; width: 50px" src="/product-images/{{this._id}}.jpg" alt="image not loading"></td>
+            <td>
+                <a href="/admin/edit-product/{{this._id}}" class="btn btn-primary">Edit</a>
+                <a href="/admin/delete-product/{{this._id}}" class="btn btn-danger" onclick="return confirm('Confirm to delete {{this.title}} ?')">Delete</a>  <!-- one case: href="/admin/delete-product/{{this._id}}" , so, using req.params, we can use in the routes folder, '/delete-product/:id' we can use req.params.id to access-->
+            </td>                                                                                              <!-- another case/way is that: href="/admin/delete-product?id={{this._id}}", where we use this, so, we can use req.query.id to access the same, the route folder code will be '/delete-product/' -->
+            
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+    </div>
+</section>
